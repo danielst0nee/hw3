@@ -1,0 +1,45 @@
+{
+  "Ticker": "AAPL",
+  "Start Date": "02-08-2024",
+  "Min Price": 165.0,
+  "Max Price": 259.02,
+  "Avg Price": 211.87,
+  "Median Price": 222.08
+},
+
+{
+  "Ticker": "MSFT",
+  "Start Date": "02-08-2024",
+  "Min Price": 389.33,
+  "Max Price": 467.56,
+  "Avg Price": 423.63,
+  "Median Price": 421.44
+},
+
+{
+  "Ticker": "GOOGL",
+  "Start Date": "02-08-2024",
+  "Min Price": 131.4,
+  "Max Price": 206.38,
+  "Avg Price": 169.02,
+  "Median Price": 168.1
+},
+
+{
+  "Ticker": "AMZN",
+  "Start Date": "02-08-2024",
+  "Min Price": 161.02,
+  "Max Price": 242.06,
+  "Avg Price": 192.05,
+  "Median Price": 186.13
+},
+
+{
+  "Ticker": "TSLA",
+  "Start Date": "02-08-2024",
+  "Min Price": 142.05,
+  "Max Price": 479.86,
+  "Avg Price": 249.55,
+  "Median Price": 219.16
+},
+

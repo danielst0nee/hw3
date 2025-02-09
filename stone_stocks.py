@@ -12,14 +12,15 @@ Help:
                     - implement API headers
                     - create a more specific exception
                     - learn how to calculate median
-                    - raise errors in try-except statements
+                    - accept arguments from the terminal
 
 """
 
 from datetime import datetime
 from statistics import median
-from json import dumps  # for printing nice
+import json  # for printing nice
 import requests
+import sys  # for accepting arguments from terminal
 
 
 def download_data(ticker: str) -> dict:
@@ -84,4 +85,12 @@ def download_data(ticker: str) -> dict:
         return {"error": f"Error fetching data: {e}"}
 
 
-print(dumps(download_data("aapl"), indent=2))
+if __name__ == "__main__":
+
+    # open file for writing
+    with open("stocks.json", "w") as outfile:
+        # iterate over all arguments starting at second argument to avoid script name
+        for ticker in sys.argv[1:]:
+            print(f"Retrieving data for {ticker.upper()}...")
+            to_print = json.dumps(download_data(ticker), indent=2)
+            outfile.write(to_print + ",\n\n")
