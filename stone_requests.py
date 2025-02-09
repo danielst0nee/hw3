@@ -11,10 +11,12 @@ Help:
                     format date properly
                     implement API headers
                     create a more specific exception
+                    learn how to calculate median
 
 """
 
 from datetime import datetime
+from statistics import median
 import requests
 
 
@@ -32,18 +34,39 @@ def download_data(ticker: str) -> dict:
     ticker = ticker.upper()
     today = datetime.today().date()
     start = today.replace(year=today.year - 1)  # data starts from 1 year ago
+    print_date = start.strftime("%m-%d-%Y")
 
     base_url = "https://api.nasdaq.com"
     path = f"/api/quote/{ticker}/historical?assetclass=stocks&fromdate={start}&limit=9999"
     URL = f"{base_url}{path}"
 
     try:
-        response = requests.get(URL, headers={"User-Agent": "Mozilla/5.0"})
+        response = requests.get(URL, headers={"User-Agent": "Mozilla/5.0"})  # added API headers
         data = response.json()
-        return data
 
+        if data['data'] is None:
+            return {"error": f"No data available for {ticker}"}
+
+        # accesses first entry
+        # print(data['data']['tradesTable']['rows'][0])
+
+        closing_prices = []  # empty list to hold all closing prices
+        for entry in data['data']['tradesTable']['rows']:
+            closing_price = float(entry['close'].replace("$", "").replace(",", ""))
+            closing_prices.append(closing_price)
+
+        print_data = {
+            "Ticker": ticker,
+            "Start Date": print_date,
+            "Min Price": min(closing_prices),
+            "Max Price": max(closing_prices),
+            "Avg Price": round((sum(closing_prices) / len(closing_prices)), 2),
+            "Median Price": round(median(closing_prices), 2),
+        }
+
+        return print_data
     except requests.exceptions.RequestException as e:
         return {"error": f"Error fetching data: {e}"}
 
 
-download_data("aapl")
+print(download_data("aapl"))
