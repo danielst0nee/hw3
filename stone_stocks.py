@@ -7,12 +7,15 @@ File Decription: This program fetches historical stock market data for
 user-selected companies using web APIs.
 
 Help:
+
     Used ChatGPT to:
-                    - format date properly
-                    - implement API headers
-                    - create a more specific exception
-                    - learn how to calculate median
-                    - accept arguments from the terminal
+        - format date properly
+        - implement API headers
+        - create a more specific exception
+        - learn how to calculate median
+
+    Used w3 schools to:
+        - write to a json file
 
 """
 
